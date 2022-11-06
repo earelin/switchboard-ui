@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import MainAppBar from "./components/MainAppBar";
+import Box from "@mui/material/Box";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Dashboard from "./Dashboard";
+
+const mdTheme = createTheme();
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Dashboard />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={mdTheme}>
+      <CssBaseline />
+      <Box sx={{ display: 'flex' }}>
+        <MainAppBar />
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: '100vh',
+          overflow: 'auto',
+        }}
+      >
+        <RouterProvider router={router} />
+      </Box>
+    </ThemeProvider>
   );
 }
 

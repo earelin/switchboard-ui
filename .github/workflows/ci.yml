@@ -1,0 +1,57 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ trunk ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Get npm cache directory path
+        id: npm-cache-dir-path
+        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+      - name: Cache npm packages
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Downloading dependencies
+        run: npm ci
+      - name: Static code analysis
+        run: npm run lint
+      - name: Unit testing
+        run: npm run test -- --ci --reporters=default --reporters=jest-junit
+      - name: Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: 'reports/junit.xml'
+      - name: Build
+        run: npm run build
+#      - name: Setting up integration testing environment
+#        run: docker-compose up --build -d
+#      - name: Integration testing
+#        run: npm run test:integration
+#      - name: Component testing
+#        run: npm run test:component
+#        env:
+#          TEST_BASE_URL: 'http://localhost:3001'
