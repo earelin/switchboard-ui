@@ -3,7 +3,8 @@ import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import MainAppBar from "./MainAppBar";
 import Box from "@mui/material/Box";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard/Dashboard";
+import ProjectList from "./projects/ProjectList";
 
 const mdTheme = createTheme();
 
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />,
+  },
+  {
+    path: "/projects",
+    element: <ProjectList />,
   },
 ]);
 

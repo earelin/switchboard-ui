@@ -5,9 +5,9 @@ type Props = {
   children: ReactNode
 }
 
-export default function Title(props: Props) {
+export default function BoxTitle(props: Props) {
   return (
-    <Typography component="h1" variant="h4" color="neutral" gutterBottom>
+    <Typography component="h2" variant="h6" color="primary" gutterBottom>
       {props.children}
     </Typography>
   );
