@@ -1,6 +1,6 @@
 import React from 'react';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import MainAppBar from "./components/MainAppBar";
+import MainAppBar from "./MainAppBar";
 import Box from "@mui/material/Box";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Dashboard from "./Dashboard";
