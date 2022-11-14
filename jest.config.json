@@ -28,7 +28,7 @@
     "react-app-polyfill/jsdom"
   ],
   "setupFilesAfterEnv": [
-    "<rootDir>/src/tests/setupTests.ts"
+    "<rootDir>/tests/setupTests.ts"
   ],
   "testEnvironment": "jsdom",
   "testMatch": [

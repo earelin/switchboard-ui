@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import orderBy from 'lodash.orderby';
 import projectsList from './data/projects-list.json';
-import { SortDirection } from '../../clients/api/paginations';
+import { SortDirection } from '../../src/clients/api/paginations';
 
 export const projectsHandlers = [
   rest.get('/projects', (req, res, ctx) => {
