@@ -17,6 +17,7 @@ describe('API client - Projects', () => {
           },
         },
       });
+
       expect(projects.content.map((project) => project.key)).toEqual([
         'switchboard',
         'gmail',
