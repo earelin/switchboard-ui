@@ -1,29 +1,7 @@
 {
-  "roots": [
-    "<rootDir>/src"
-  ],
   "collectCoverageFrom": [
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.d.ts"
-  ],
-  "setupFiles": [
-    "react-app-polyfill/jsdom"
-  ],
-  "setupFilesAfterEnv": [
-    "<rootDir>/src/setupTests.ts"
-  ],
-  "testMatch": [
-    "<rootDir>/src/**/*.test.{ts,tsx}"
-  ],
-  "testEnvironment": "jsdom",
-  "transform": {
-    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
-    "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-  },
-  "transformIgnorePatterns": [
-    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
-    "^.+\\.module\\.(css|sass|scss)$"
   ],
   "modulePaths": [],
   "moduleNameMapper": {
@@ -42,9 +20,31 @@
     "jsx",
     "node"
   ],
+  "resetMocks": true,
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "setupFiles": [
+    "react-app-polyfill/jsdom"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/tests/setupTests.ts"
+  ],
+  "testEnvironment": "jsdom",
+  "testMatch": [
+    "<rootDir>/src/**/*.test.{ts,tsx}"
+  ],
+  "transform": {
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+    "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
   "watchPlugins": [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
-  ],
-  "resetMocks": true
+  ]
 }
