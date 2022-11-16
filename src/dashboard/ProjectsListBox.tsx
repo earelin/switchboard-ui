@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Skeleton,
   Typography,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
@@ -40,7 +41,11 @@ function ProjectList(props: ProjectListProps) {
   return (
     <>
       {props.isLoading ? (
-        'Loading...'
+        <>
+          {[...Array(5)].map((item, i) => (
+            <Skeleton key={i} variant="rectangular" height={75} />
+          ))}
+        </>
       ) : props.isError ? (
         'Error!'
       ) : props.data ? (
