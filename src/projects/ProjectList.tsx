@@ -5,18 +5,12 @@ import {
   Container,
   Grid,
   Link,
-  List,
-  Skeleton,
   Typography,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import {
-  getLastUpdatedProjects,
-  getSortedProjects,
-  Project,
-} from '../clients/api/projects';
+import { getSortedProjects, Project } from '../clients/api/projects';
 import { Link as RouterLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQueryLoader from '../components/ReactQueryLoader';
 
 export default function ProjectList() {
@@ -29,7 +23,7 @@ export default function ProjectList() {
 }
 
 function ProjectListComponent() {
-  const [page, setPage] = useState(0);
+  const page = 0;
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ['projects'],
