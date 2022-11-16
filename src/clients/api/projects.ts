@@ -9,7 +9,7 @@ export type Project = {
 
 export function getLastUpdatedProjects(
   page = 0,
-  size = 10
+  size = 5
 ): Promise<Page<Project>> {
   const queryString = new URLSearchParams({
     page: String(page),

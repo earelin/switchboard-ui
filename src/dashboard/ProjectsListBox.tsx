@@ -1,24 +1,87 @@
 import BoxTitle from '../components/BoxTitle';
-import { Link, List } from '@mui/material';
+import {
+  Divider,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { getLastUpdatedProjects } from '../clients/api/projects';
+import { useQuery } from '@tanstack/react-query';
+import { getLastUpdatedProjects, Project } from '../clients/api/projects';
+import React from 'react';
+import { Page } from '../clients/api/paginations';
 
 export default function ProjectsListBox() {
-  const [projects, setProjects] = useState([]);
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ['projects'],
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['last-projects'],
     queryFn: () => getLastUpdatedProjects(),
   });
 
   return (
     <>
       <BoxTitle>Projects</BoxTitle>
-      <List></List>
-      <Link component={RouterLink} to="/projects">
-        More ...
+      <ProjectList isLoading={isLoading} isError={isError} data={data} />
+      <Link key="link" component={RouterLink} to="/projects">
+        <Typography align="right">More</Typography>
       </Link>
     </>
+  );
+}
+
+type ProjectListProps = {
+  isLoading: boolean;
+  isError: boolean;
+  data: Page<Project> | undefined;
+};
+
+function ProjectList(props: ProjectListProps) {
+  return (
+    <>
+      {props.isLoading ? (
+        'Loading...'
+      ) : props.isError ? (
+        'Error!'
+      ) : props.data ? (
+        <ProjectListInner data={props.data} />
+      ) : null}
+    </>
+  );
+}
+
+type ProjectListInnerProps = {
+  data: Page<Project>;
+};
+
+function ProjectListInner(props: ProjectListInnerProps) {
+  return (
+    <List role="navigation">
+      {props.data.content.map((project) => (
+        <React.Fragment key={project.key}>
+          <Divider variant="middle" component="li" />
+          <ListItem>
+            <ListItemText
+              primary={<ListItemTitle id={project.key} text={project.name} />}
+              secondary={project.description}
+            />
+          </ListItem>
+        </React.Fragment>
+      ))}
+      <Divider key="last-divider" variant="middle" component="li" />
+    </List>
+  );
+}
+
+type ListItemTitleProps = {
+  text: string;
+  id: string;
+};
+
+function ListItemTitle(props: ListItemTitleProps) {
+  return (
+    <Link role="link" component={RouterLink} to={`/projects/${props.id}`}>
+      {props.text}
+    </Link>
   );
 }
