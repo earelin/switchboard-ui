@@ -83,9 +83,12 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.8.2",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^13.1.0",
+    "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
     "webpack": "^5.64.4",
+    "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
@@ -93,6 +96,8 @@
   "proxy": "http://localhost:5500",
   "scripts": {
     "build": "node scripts/build.js",
+    "build:new": "webpack --config webpack.config.cjs",
+    "clean": "rimraf build coverage",
     "dev": "node scripts/start.js",
     "format": "prettier -w src",
     "lint": "eslint src",
