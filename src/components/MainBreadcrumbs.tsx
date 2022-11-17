@@ -17,6 +17,7 @@ export default function MainBreadcrumbs(props: Props) {
           sx={{ verticalAlign: 'text-top', marginTop: '0.1rem' }}
           fontSize="inherit"
         />
+        &nbsp;Home
       </Link>
       {props.links &&
         props.links.map((link, i) => (

@@ -38,7 +38,7 @@ describe('API client - Projects', () => {
         total: 12,
         request: {
           page: 0,
-          size: 15,
+          size: 12,
           sort: {
             direction: SortDirection.ASC,
             property: 'name',

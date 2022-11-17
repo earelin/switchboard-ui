@@ -25,8 +25,8 @@ describe('MainBreadcrumbs', () => {
 
     await screen.findByRole('navigation');
 
-    expect(screen.getAllByRole('link').map((link) => link.textContent)).toEqual(
-      ['Home', 'Projects', 'Switchboard']
-    );
+    expect(
+      screen.getAllByRole('link').map((link) => link.textContent?.trim())
+    ).toEqual(['Home', 'Projects', 'Switchboard']);
   });
 });
