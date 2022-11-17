@@ -4,7 +4,7 @@ import { Page } from '../clients/api/paginations';
 
 type Props<T> = {
   children: ReactNode;
-  data: Page<T> | undefined;
+  data?: Page<T> | null;
   isLoading: boolean;
   isError: boolean;
   skeletonHeight?: number;

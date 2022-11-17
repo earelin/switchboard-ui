@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 import ProjectList from './projects/ProjectList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ProjectShow from './projects/ProjectShow';
 
 const mdTheme = createTheme();
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     element: <ProjectList />,
+  },
+  {
+    path: '/projects/:projectKey',
+    element: <ProjectShow />,
   },
 ]);
 

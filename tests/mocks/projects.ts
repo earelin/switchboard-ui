@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { rest } from "msw";
 import orderBy from 'lodash.orderby';
 import projectsList from './data/projects-list.json';
 import { SortDirection } from '../../src/clients/api/paginations';
@@ -28,6 +28,21 @@ export const projectsHandlers = [
           },
         },
       })
+    );
+  }),
+
+  rest.get('/projects/:projectKey', (req, res, ctx) => {
+    const projectKey = req.params.projectKey;
+    const project = projectsList.find(project => projectKey === project.key)
+
+    if (!project) {
+      return res(
+        ctx.status(404)
+      );
+    }
+
+    return res(
+      ctx.json(project)
     );
   }),
 ];

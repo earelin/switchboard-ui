@@ -5,7 +5,8 @@ import {ReactNode} from "react";
 const queryClient = new QueryClient();
 
 type Props = {
-  children: ReactNode
+  children: ReactNode,
+
 }
 
 export default function TestApp(props: Props) {

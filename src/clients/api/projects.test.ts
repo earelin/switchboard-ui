@@ -1,4 +1,8 @@
-import { getLastUpdatedProjects, getSortedProjects } from './projects';
+import {
+  getLastUpdatedProjects,
+  getProject,
+  getSortedProjects,
+} from './projects';
 import { SortDirection } from './paginations';
 
 describe('API client - Projects', () => {
@@ -24,7 +28,9 @@ describe('API client - Projects', () => {
         'elasticsearch',
       ]);
     });
+  });
 
+  describe('getSortedProjects', () => {
     test('Should get projects default request', async () => {
       const projects = await getSortedProjects();
 
@@ -99,6 +105,28 @@ describe('API client - Projects', () => {
         'jenkins',
         'istio',
       ]);
+    });
+  });
+
+  describe('getProject', () => {
+    const EXISTING_PROJECT = {
+      key: 'switchboard',
+      name: 'Switchboard',
+      description: 'A Feature Flag system.',
+      created: new Date('2022-11-19T23:15:30.000Z'),
+      updated: new Date('2022-11-21T20:23:50.000Z'),
+    };
+
+    test('Should get existing project', async () => {
+      const project = await getProject(EXISTING_PROJECT.key);
+
+      expect(project).toEqual(EXISTING_PROJECT);
+    });
+
+    test('Should get not existing project', async () => {
+      const project = await getProject('not-existing');
+
+      expect(project).toBeNull();
     });
   });
 });
