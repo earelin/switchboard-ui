@@ -41,7 +41,7 @@ export async function getSortedProjects(
 ): Promise<Page<Project>> {
   const queryString = new URLSearchParams({
     page: request?.page?.toString() ?? '0',
-    size: request?.size?.toString() ?? '15',
+    size: request?.size?.toString() ?? '12    ',
     'sort.direction': request?.sort?.direction ?? SortDirection.ASC,
     'sort.property': request?.sort?.property ?? 'name',
   });

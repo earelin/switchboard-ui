@@ -1,4 +1,4 @@
-import { Breadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs, css, Link } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import React from 'react';
 
@@ -13,8 +13,10 @@ export default function MainBreadcrumbs(props: Props) {
   return (
     <Breadcrumbs role="navigation" aria-label="breadcrumb">
       <Link key={0} underline="hover" color="inherit" href="/">
-        <HomeIcon fontSize="inherit" />
-        Home
+        <HomeIcon
+          sx={{ verticalAlign: 'text-top', marginTop: '0.1rem' }}
+          fontSize="inherit"
+        />
       </Link>
       {props.links &&
         props.links.map((link, i) => (

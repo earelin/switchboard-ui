@@ -16,7 +16,7 @@ export default function ProjectShow() {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <MainBreadcrumbs />
+      <MainBreadcrumbs links={[{ label: 'Projects', href: '/projects' }]} />
       {isLoading ? (
         <CircularProgress />
       ) : isError ? (

@@ -12,10 +12,12 @@ import { getSortedProjects, Project } from '../clients/api/projects';
 import { Link as RouterLink } from 'react-router-dom';
 import React from 'react';
 import ReactQueryLoader from '../components/ReactQueryLoader';
+import MainBreadcrumbs from '../components/MainBreadcrumbs';
 
 export default function ProjectList() {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <MainBreadcrumbs />
       <Title>Projects</Title>
       <ProjectListComponent />
     </Container>
