@@ -15,11 +15,11 @@ describe('ProjectListBox component testing', () => {
     expect(
       screen.getAllByRole('link').map((listitem) => listitem.textContent)
     ).toEqual([
+      'Libreoffice',
+      'Sentry',
       'Kubernetes',
       'Jenkins',
-      'Apache',
-      'NGINX',
-      'Switchboard',
+      'Gimp',
       'More',
     ]);
   });

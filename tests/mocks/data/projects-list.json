@@ -82,5 +82,54 @@
     "description": "Service mesh.",
     "created": "2022-11-08T23:15:30.000Z",
     "updated": "2022-11-10T20:23:50.000Z"
+  },
+  {
+    "key": "strapi",
+    "name": "Strapi",
+    "description": "Headless CMS.",
+    "created": "2022-11-14T23:15:30.000Z",
+    "updated": "2022-11-20T20:23:50.000Z"
+  },
+  {
+    "key": "grafana",
+    "name": "Grafana",
+    "description": "Analytics and monitoring system.",
+    "created": "2022-11-15T23:15:30.000Z",
+    "updated": "2022-11-15T23:15:30.000Z"
+  },
+  {
+    "key": "sentry",
+    "name": "Sentry",
+    "description": "Monitoring and error tracking system.",
+    "created": "2022-11-16T23:15:30.000Z",
+    "updated": "2022-11-25T20:13:30.000Z"
+  },
+  {
+    "key": "prometheus",
+    "name": "Prometheus",
+    "description": "Monitoring system.",
+    "created": "2022-11-15T23:17:30.000Z",
+    "updated": "2022-11-15T23:17:30.000Z"
+  },
+  {
+    "key": "gimp",
+    "name": "Gimp",
+    "description": "Photo and image editing tool.",
+    "created": "2022-11-17T23:15:30.000Z",
+    "updated": "2022-11-23T20:13:30.000Z"
+  },
+  {
+    "key": "jitsi",
+    "name": "Jitsi",
+    "description": "Videoconference platform and SDK.",
+    "created": "2022-11-18T23:15:30.000Z",
+    "updated": "2022-11-21T20:13:30.000Z"
+  },
+  {
+    "key": "libreoffice",
+    "name": "Libreoffice",
+    "description": "Photo and image editing tool.",
+    "created": "2022-11-19T23:15:30.000Z",
+    "updated": "2022-11-25T21:13:30.000Z"
   }
 ]

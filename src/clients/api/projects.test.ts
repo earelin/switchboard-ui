@@ -11,7 +11,7 @@ describe('API client - Projects', () => {
       const projects = await getLastUpdatedProjects(1, 4);
 
       expect(projects).toMatchObject({
-        total: 12,
+        total: 19,
         request: {
           page: 1,
           size: 4,
@@ -22,10 +22,10 @@ describe('API client - Projects', () => {
         },
       });
       expect(projects.content.map((project) => project.key)).toEqual([
+        'gimp',
+        'apache',
+        'nginx',
         'switchboard',
-        'gmail',
-        'python',
-        'elasticsearch',
       ]);
     });
   });
@@ -35,7 +35,7 @@ describe('API client - Projects', () => {
       const projects = await getSortedProjects();
 
       expect(projects).toMatchObject({
-        total: 12,
+        total: 19,
         request: {
           page: 0,
           size: 12,
@@ -52,12 +52,12 @@ describe('API client - Projects', () => {
         'dart',
         'elasticsearch',
         'gmail',
+        'gimp',
+        'grafana',
         'istio',
         'jenkins',
+        'jitsi',
         'kubernetes',
-        'nginx',
-        'python',
-        'switchboard',
       ]);
     });
 
@@ -65,7 +65,7 @@ describe('API client - Projects', () => {
       const projects = await getSortedProjects({ page: 1, size: 3 });
 
       expect(projects).toMatchObject({
-        total: 12,
+        total: 19,
         request: {
           page: 1,
           size: 3,
@@ -90,7 +90,7 @@ describe('API client - Projects', () => {
       });
 
       expect(projects).toMatchObject({
-        total: 12,
+        total: 19,
         request: {
           page: 1,
           size: 3,
@@ -101,9 +101,9 @@ describe('API client - Projects', () => {
         },
       });
       expect(projects.content.map((project) => project.key)).toEqual([
-        'kubernetes',
-        'jenkins',
-        'istio',
+        'python',
+        'prometheus',
+        'nginx',
       ]);
     });
   });
