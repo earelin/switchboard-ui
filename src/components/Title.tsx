@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
+  'data-testid'?: string;
 };
 
 export default function Title(props: Props) {
@@ -13,6 +14,7 @@ export default function Title(props: Props) {
       variant="h4"
       color="neutral"
       gutterBottom
+      data-testid={props['data-testid']}
     >
       {props.children}
     </Typography>

@@ -11,7 +11,7 @@ describe('API client - Projects', () => {
       const projects = await getLastUpdatedProjects(1, 4);
 
       expect(projects).toMatchObject({
-        total: 19,
+        total: 27,
         request: {
           page: 1,
           size: 4,
@@ -22,10 +22,10 @@ describe('API client - Projects', () => {
         },
       });
       expect(projects.content.map((project) => project.key)).toEqual([
-        'gimp',
-        'apache',
-        'nginx',
-        'switchboard',
+        'kubernetes',
+        'postgres',
+        'mysql',
+        'jenkins',
       ]);
     });
   });
@@ -35,7 +35,7 @@ describe('API client - Projects', () => {
       const projects = await getSortedProjects();
 
       expect(projects).toMatchObject({
-        total: 19,
+        total: 27,
         request: {
           page: 0,
           size: 12,
@@ -50,14 +50,14 @@ describe('API client - Projects', () => {
         'apache',
         'chromium',
         'dart',
+        'django',
         'elasticsearch',
         'gmail',
         'gimp',
+        'git',
         'grafana',
         'istio',
         'jenkins',
-        'jitsi',
-        'kubernetes',
       ]);
     });
 
@@ -65,7 +65,7 @@ describe('API client - Projects', () => {
       const projects = await getSortedProjects({ page: 1, size: 3 });
 
       expect(projects).toMatchObject({
-        total: 19,
+        total: 27,
         request: {
           page: 1,
           size: 3,
@@ -77,8 +77,8 @@ describe('API client - Projects', () => {
       });
       expect(projects.content.map((project) => project.key)).toEqual([
         'dart',
+        'django',
         'elasticsearch',
-        'gmail',
       ]);
     });
 
@@ -90,7 +90,7 @@ describe('API client - Projects', () => {
       });
 
       expect(projects).toMatchObject({
-        total: 19,
+        total: 27,
         request: {
           page: 1,
           size: 3,
@@ -101,9 +101,9 @@ describe('API client - Projects', () => {
         },
       });
       expect(projects.content.map((project) => project.key)).toEqual([
-        'python',
-        'prometheus',
-        'nginx',
+        'switchboard',
+        'strapi',
+        'sentry',
       ]);
     });
   });

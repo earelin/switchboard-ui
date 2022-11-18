@@ -131,5 +131,61 @@
     "description": "Photo and image editing tool.",
     "created": "2022-11-19T23:15:30.000Z",
     "updated": "2022-11-25T21:13:30.000Z"
+  },
+  {
+    "key": "git",
+    "name": "Git",
+    "description": "Version control system.",
+    "created": "2022-11-20T23:15:30.000Z",
+    "updated": "2022-11-27T21:13:30.000Z"
+  },
+  {
+    "key": "django",
+    "name": "Django",
+    "description": "Python web framework.",
+    "created": "2022-11-21T23:15:30.000Z",
+    "updated": "2022-11-22T21:13:30.000Z"
+  },
+  {
+    "key": "tensorflow",
+    "name": "TensorFlow",
+    "description": "Machine learning platform.",
+    "created": "2022-11-21T23:17:30.000Z",
+    "updated": "2022-11-21T23:17:30.000Z"
+  },
+  {
+    "key": "terraform",
+    "name": "Terraform",
+    "description": "Infrastructure as code system.",
+    "created": "2022-11-22T23:15:30.000Z",
+    "updated": "2022-11-22T23:15:30.000Z"
+  },
+  {
+    "key": "postgres",
+    "name": "PostgreSQL",
+    "description": "Relational database system.",
+    "created": "2022-11-22T23:15:30.000Z",
+    "updated": "2022-11-23T21:13:30.000Z"
+  },
+  {
+    "key": "mysql",
+    "name": "MySQL",
+    "description": "Relational database system.",
+    "created": "2022-11-22T23:17:30.000Z",
+    "updated": "2022-11-23T21:13:30.000Z"
+  },
+  {
+    "key": "mongodb",
+    "name": "MongoDB",
+    "description": "Document based database system.",
+    "created": "2022-11-22T23:19:30.000Z",
+    "updated": "2022-11-22T23:19:30.000Z"
+  },
+  {
+    "key": "vim",
+    "name": "Vim",
+    "description": "Command line interface text editor.",
+    "created": "2022-11-24T23:15:30.000Z",
+    "updated": "2022-11-29T21:13:30.000Z"
   }
 ]

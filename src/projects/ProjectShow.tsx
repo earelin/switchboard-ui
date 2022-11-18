@@ -23,8 +23,10 @@ export default function ProjectShow() {
         'Error!'
       ) : data ? (
         <>
-          <Title>{data.name}</Title>
-          <Typography variant="body1">{data.description}</Typography>
+          <Title data-testid="project-name">{data.name}</Title>
+          <Typography data-testid="project-description" variant="body1">
+            {data.description}
+          </Typography>
         </>
       ) : null}
     </Container>

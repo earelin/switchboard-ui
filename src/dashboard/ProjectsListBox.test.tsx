@@ -1,26 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import ProjectsListBox from './ProjectsListBox';
 import TestApp from '../../tests/TestApp';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('ProjectListBox component testing', () => {
   test('Should load projects', async () => {
     render(
       <TestApp>
-        <ProjectsListBox />
+        <MemoryRouter>
+          <ProjectsListBox />
+        </MemoryRouter>
       </TestApp>
     );
 
     await screen.findByRole('navigation');
 
     expect(
-      screen.getAllByRole('link').map((listitem) => listitem.textContent)
-    ).toEqual([
-      'Libreoffice',
-      'Sentry',
-      'Kubernetes',
-      'Jenkins',
-      'Gimp',
-      'More',
-    ]);
+      screen
+        .getAllByTestId('project-title')
+        .map((listitem) => listitem.textContent)
+    ).toEqual(['Vim', 'Git', 'Libreoffice', 'Sentry', 'Kubernetes']);
   });
 });

@@ -7,10 +7,10 @@ import { when } from 'jest-when';
 
 jest.mock('react-router-dom');
 
-const PROJECT_KEY = 'switchboard';
+const PROJECT_KEY = 'kubernetes';
 
 describe('ProjectShow', () => {
-  test.skip('Should show project data', async () => {
+  test('Should show project data', async () => {
     when(useParams).mockReturnValue({
       projectKey: PROJECT_KEY,
     });
@@ -20,8 +20,11 @@ describe('ProjectShow', () => {
       </TestApp>
     );
 
-    await screen.findByRole('heading');
+    await screen.findByTestId('project-name');
 
-    expect(screen.getByRole('heading')).toHaveTextContent('Kubernetes');
+    expect(screen.getByTestId('project-name')).toHaveTextContent('Kubernetes');
+    expect(screen.getByTestId('project-description')).toHaveTextContent(
+      'Container orchestration system.'
+    );
   });
 });

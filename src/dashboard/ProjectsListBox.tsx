@@ -85,7 +85,12 @@ type ListItemTitleProps = {
 
 function ListItemTitle(props: ListItemTitleProps) {
   return (
-    <Link role="link" component={RouterLink} to={`/projects/${props.id}`}>
+    <Link
+      role="link"
+      data-testid="project-title"
+      component={RouterLink}
+      to={`/projects/${props.id}`}
+    >
       {props.text}
     </Link>
   );
