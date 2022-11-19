@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import ProjectShow from './ProjectShow';
 import { useParams } from 'react-router-dom';
 import React from 'react';
-import TestApp from '../../tests/TestApp';
 import { when } from 'jest-when';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
