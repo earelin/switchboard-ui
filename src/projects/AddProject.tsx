@@ -18,8 +18,9 @@ import {
   useForm,
 } from 'react-hook-form';
 import { isBlank } from '../utils/validation';
-import { useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { createProject, Project } from '../clients/api/projects';
 
 type CreateFormInput = {
   name: string;
@@ -45,7 +46,7 @@ export default function AddProject() {
         variant="contained"
         onClick={handleOpen}
       >
-        <AddIcon /> Add
+        <AddIcon fontSize="inherit" sx={{ marginRight: '0.2rem' }} /> Add
       </Button>
       <AddProjectDialog open={open} handleClose={handleClose} />
     </>
@@ -61,12 +62,20 @@ function AddProjectDialog({ open, handleClose }: AddProjectDialogProps) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [isUploading, setIsUploading] = useState(false);
+
   const {
     control,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<CreateFormInput>();
+
+  const createProjectMutation = useMutation({
+    mutationFn: createProject,
+    onSuccess: (data: Project | null) => {
+      navigate(`/projects/${data?.key}`);
+    },
+  });
 
   const onClose: VoidFunction = useCallback(() => {
     handleClose();
@@ -77,6 +86,7 @@ function AddProjectDialog({ open, handleClose }: AddProjectDialogProps) {
   const onSubmit: SubmitHandler<CreateFormInput> = useCallback(
     (data) => {
       setIsUploading(true);
+      createProjectMutation.mutate(data);
       queryClient.invalidateQueries({ queryKey: ['projects'] });
       navigate(`/projects/${data.key}`);
     },

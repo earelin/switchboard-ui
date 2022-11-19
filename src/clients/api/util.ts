@@ -24,12 +24,15 @@ async function fetchPayload<P, T>(
   payload: P
 ): Promise<T> {
   const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
     method: method,
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error(`Network response was not ok: ${await response.json()}`);
   }
   return response.json();
 }
