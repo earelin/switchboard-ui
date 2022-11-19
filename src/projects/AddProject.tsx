@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { isBlank } from '../utils/validation';
 
 type CreateFormInput = {
   name: string;
@@ -62,12 +63,12 @@ export default function AddProject() {
                 name="name"
                 control={control}
                 defaultValue=""
-                rules={{ required: true }}
+                rules={{ validate: validateFieldNotEmpty('Name') }}
                 render={({ field }) => (
                   <TextField
                     label="Name"
                     error={Boolean(errors.name)}
-                    helperText={errors.name && 'Name is required'}
+                    helperText={errors?.name?.message || ' '}
                     data-testid="project-name"
                     {...field}
                   />
@@ -77,12 +78,12 @@ export default function AddProject() {
                 name="key"
                 control={control}
                 defaultValue=""
-                rules={{ required: true }}
+                rules={{ validate: validateFieldNotEmpty('Key') }}
                 render={({ field }) => (
                   <TextField
                     label="Key"
                     error={Boolean(errors.key)}
-                    helperText={errors.key && 'Key is required'}
+                    helperText={errors?.key?.message || ' '}
                     data-testid="project-key"
                     {...field}
                   />
@@ -124,4 +125,10 @@ export default function AddProject() {
       </Dialog>
     </>
   );
+}
+
+function validateFieldNotEmpty(name: string) {
+  return function (value: string | null) {
+    return isBlank(value) && `${name} should not be empty`;
+  };
 }
