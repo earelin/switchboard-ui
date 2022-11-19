@@ -2,6 +2,7 @@ import { rest } from "msw";
 import orderBy from 'lodash.orderby';
 import projectsList from './data/projects-list.json';
 import { SortDirection } from '../../src/clients/api/paginations';
+import { CreateProject } from "../../src/clients/api/projects";
 
 export const projectsHandlers = [
   rest.get('/projects', (req, res, ctx) => {
@@ -45,4 +46,18 @@ export const projectsHandlers = [
       ctx.json(project)
     );
   }),
+
+  rest.post('/projects', async (req, res, ctx) => {
+    const now = new Date();
+    const createProjectRequest = await req.json<CreateProject>();
+    const project = {
+      ...createProjectRequest,
+      created: now,
+      updated: now
+    };
+
+    return res(
+      ctx.json(project)
+    )
+  })
 ];

@@ -1,4 +1,5 @@
 import {
+  createProject,
   getLastUpdatedProjects,
   getProject,
   getSortedProjects,
@@ -127,6 +128,27 @@ describe('API client - Projects', () => {
       const project = await getProject('not-existing');
 
       expect(project).toBeNull();
+    });
+  });
+
+  describe('createProject', () => {
+    const now = new Date();
+    const CREATE_PROJECT_COMMAND = {
+      key: 'switchboard',
+      name: 'Switchboard',
+      description: 'A Feature Flag system.',
+    };
+
+    test('Should create a project', async () => {
+      const createdProject = await createProject(CREATE_PROJECT_COMMAND);
+
+      expect(createdProject).toMatchObject({
+        ...CREATE_PROJECT_COMMAND,
+        updated: expect.any(Date),
+        created: expect.any(Date),
+      });
+      expect(createdProject?.created).toBeAfter(now);
+      expect(createdProject?.updated).toEqual(createdProject?.created);
     });
   });
 });

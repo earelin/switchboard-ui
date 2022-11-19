@@ -19,6 +19,7 @@ import {
 } from 'react-hook-form';
 import { isBlank } from '../utils/validation';
 import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 type CreateFormInput = {
   name: string;
@@ -58,6 +59,7 @@ type AddProjectDialogProps = {
 
 function AddProjectDialog({ open, handleClose }: AddProjectDialogProps) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [isUploading, setIsUploading] = useState(false);
   const {
     control,
@@ -76,9 +78,9 @@ function AddProjectDialog({ open, handleClose }: AddProjectDialogProps) {
     (data) => {
       setIsUploading(true);
       queryClient.invalidateQueries({ queryKey: ['projects'] });
-      onClose();
+      navigate(`/projects/${data.key}`);
     },
-    [queryClient, onClose]
+    [navigate, queryClient]
   );
 
   return (

@@ -1,21 +1,23 @@
 import { Page, PageRequest, SortDirection } from './paginations';
-import { fetchGet, NotFoundError } from './util';
+import { fetchGet, fetchPost, NotFoundError } from './util';
 
-export type Project = {
+export type ProjectBase = {
   key: string;
   name: string;
   description?: string;
+};
+
+export type Project = ProjectBase & {
   created: Date;
   updated: Date;
 };
 
-export type ProjectDto = {
-  key: string;
-  name: string;
-  description?: string;
+export type ProjectDto = ProjectBase & {
   created: string;
   updated: string;
 };
+
+export type CreateProject = ProjectBase;
 
 export async function getLastUpdatedProjects(
   pageNumber = 0,
@@ -64,6 +66,16 @@ export async function getProject(key: string): Promise<Project | null> {
     }
     throw e;
   }
+}
+
+export async function createProject(
+  createProject: CreateProject
+): Promise<Project | null> {
+  const createdProject = await fetchPost<CreateProject, ProjectDto>(
+    '/projects',
+    createProject
+  );
+  return fromProjectDtoToDomain(createdProject);
 }
 
 function fromProjectDtoToDomain(projectDto: ProjectDto | null) {

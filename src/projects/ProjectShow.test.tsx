@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import TestApp from '../../tests/TestApp';
 import { when } from 'jest-when';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 jest.mock('react-router-dom');
 
@@ -15,9 +16,9 @@ describe('ProjectShow', () => {
       projectKey: PROJECT_KEY,
     });
     render(
-      <TestApp>
+      <QueryClientProvider client={new QueryClient()}>
         <ProjectShow />
-      </TestApp>
+      </QueryClientProvider>
     );
 
     await screen.findByTestId('project-name');

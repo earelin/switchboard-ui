@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import ProjectsListBox from './ProjectsListBox';
 import TestApp from '../../tests/TestApp';
-import { MemoryRouter } from 'react-router-dom';
 
 describe('ProjectListBox component testing', () => {
   test('Should load projects', async () => {
     render(
       <TestApp>
-        <MemoryRouter>
-          <ProjectsListBox />
-        </MemoryRouter>
+        <ProjectsListBox />
       </TestApp>
     );
 
