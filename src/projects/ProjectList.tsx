@@ -1,34 +1,45 @@
 import Title from '../components/Title';
 import {
+  Button,
   Card,
   CardContent,
   Container,
   Grid,
   Link,
+  Pagination,
+  Stack,
   Typography,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getSortedProjects, Project } from '../clients/api/projects';
 import { Link as RouterLink } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import ReactQueryLoader from '../components/ReactQueryLoader';
 import MainBreadcrumbs from '../components/MainBreadcrumbs';
+import AddProject from './AddProject';
 
 export default function ProjectList() {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <MainBreadcrumbs />
-      <Title>Projects</Title>
+      <Grid item container>
+        <Grid item xs={10}>
+          <Title>Projects</Title>
+        </Grid>
+        <Grid item xs={2} textAlign="right">
+          <AddProject />
+        </Grid>
+      </Grid>
       <ProjectListComponent />
     </Container>
   );
 }
 
 function ProjectListComponent() {
-  const page = 0;
+  const [page, setPage] = useState(0);
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: ['projects'],
+    queryKey: ['projects', page],
     queryFn: () => getSortedProjects({ page }),
   });
 
@@ -39,6 +50,13 @@ function ProjectListComponent() {
           <ProjectListItem key={i} project={project} />
         ))}
       </Grid>
+      <Stack alignItems="center" sx={{ marginTop: '1rem' }}>
+        <Pagination
+          page={page + 1}
+          count={Math.ceil((data?.total ?? 0) / (data?.request?.size ?? 12))}
+          onChange={(event, page) => setPage(page - 1)}
+        />
+      </Stack>
     </ReactQueryLoader>
   );
 }

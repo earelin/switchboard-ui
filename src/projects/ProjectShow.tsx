@@ -10,7 +10,7 @@ export default function ProjectShow() {
   const { projectKey } = useParams();
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: [`project-${projectKey}`],
+    queryKey: ['project', projectKey],
     queryFn: () => getProject(projectKey ?? ''),
   });
 

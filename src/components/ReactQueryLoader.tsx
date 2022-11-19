@@ -12,7 +12,7 @@ type Props<T> = {
 };
 
 export default function ReactQueryLoader<T>(props: Props<T>) {
-  const skeletonItems = props.skeletonItems ?? 15;
+  const skeletonItems = props.skeletonItems ?? 12;
   const skeletonHeight = props.skeletonHeight ?? 75;
 
   return (
