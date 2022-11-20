@@ -90,7 +90,7 @@ function AddProjectDialog({ open, handleClose }: AddProjectDialogProps) {
       queryClient.invalidateQueries({ queryKey: ['projects'] });
       navigate(`/projects/${data.key}`);
     },
-    [navigate, queryClient]
+    [createProjectMutation, navigate, queryClient]
   );
 
   return (
