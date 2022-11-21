@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import MainAppBar from './MainAppBar';
 import Box from '@mui/material/Box';
@@ -28,13 +28,18 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 
 function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={mdTheme}>
         <CssBaseline />
-        <Box sx={{ display: 'flex' }}>
-          <MainAppBar />
-        </Box>
+        <MainAppBar
+          handleDrawerOpen={handleDrawerToggle}
+          drawerOpen={drawerOpen}
+        />
         <Box
           component="main"
           sx={{
